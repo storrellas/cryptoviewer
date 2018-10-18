@@ -1,5 +1,8 @@
 from deribit_api import RestClient
-client = RestClient("", "")
+from localsettings import *
+
+
+client = RestClient(KEY, SECRET)
 client.index()
 client.account()
 
