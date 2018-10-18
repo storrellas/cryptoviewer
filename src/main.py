@@ -9,9 +9,9 @@ client.account()
 # Get instruments
 instruments = client.getinstruments()
 
-print(instruments)
+#print(instruments[0])
 
 # Get Last trades
 lastrades = client.getlasttrades(instruments[0]['instrumentName'])
 
-print(lastrades)
+print(lastrades[0])
