@@ -119,3 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# DERIBIT CREDENTIALS
+DERIBIT_KEY = ''
+DERIBIT_SECRET = ''
+
+# Import localsettings if any
+try:
+    from .localsettings import *
+except ImportError:
+    pass

@@ -6,19 +6,23 @@ from django.db import models
 # 'baseCurrency': 'BTC', 'expiration': '2019-06-28 08:00:00 GMT', 'tickSize': 0.0005,
 # 'instrumentName': 'BTC-28JUN19-20000-C', 'created': '2018-10-04 11:14:09 GMT'}
 class Instrument(models.Model):
-    kind = models.CharField(max_length=10)
-    currency = models.CharField(max_length=10)
-    pricePrecision = models.IntegerField()
-    strike = models.DecimalField(max_digits=10, decimal_places=5)
-    optionType = models.CharField(max_length=10)
-    isActive = models.BooleanField()
-    minTradeSize = models.DecimalField(max_digits=10, decimal_places=5)
-    settlement = models.CharField(max_length=10)
-    baseCurrency = models.CharField(max_length=10)
-    expiration = models.DateTimeField()
-    tickSize = models.DecimalField(max_digits=10, decimal_places=5)
-    instrumentName = models.CharField(max_length=100)
-    created = models.DateTimeField()
+    kind = models.CharField(max_length=10,null=True)
+    currency = models.CharField(max_length=10,null=True)
+    pricePrecision = models.IntegerField(null=True)
+    strike = models.DecimalField(max_digits=10, decimal_places=5,null=True)
+    optionType = models.CharField(max_length=10,null=True)
+    isActive = models.BooleanField(null=True)
+    minTradeSize = models.DecimalField(max_digits=10, decimal_places=5,null=True)
+    settlement = models.CharField(max_length=10,null=True)
+    baseCurrency = models.CharField(max_length=10,null=True)
+    # TODO: Find a way to import DateTimeField as it comes from Deribit
+    #expiration = models.DateTimeField(null=True)
+    expiration = models.CharField(max_length=20,null=True)
+    tickSize = models.DecimalField(max_digits=10, decimal_places=5,null=True)
+    instrumentName = models.CharField(max_length=100,null=True)
+    # TODO: Find a way to import DateTimeField as it comes from Deribit
+    #created = models.DateTimeField(null=True)
+    created = models.CharField(max_length=20,null=True)
 
 
 # {'instrument': 'BTC-28JUN19-20000-C', 'tradeId': 10135458, 'indexPrice': 6402.21,
