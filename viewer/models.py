@@ -5,7 +5,15 @@ from django.db import models
 # 'optionType': 'call', 'isActive': True, 'minTradeSize': 0.1, 'settlement': 'month',
 # 'baseCurrency': 'BTC', 'expiration': '2019-06-28 08:00:00 GMT', 'tickSize': 0.0005,
 # 'instrumentName': 'BTC-28JUN19-20000-C', 'created': '2018-10-04 11:14:09 GMT'}
+
+# {"kind":"future","baseCurrency":"BTC","currency":"USD","minTradeSize":1,
+# "instrumentName":"BTC-28DEC18","isActive":true,"settlement":"month",
+# "created":"2018-07-27 08:06:03 GMT","tickSize":0.5,"pricePrecision":1,
+# "expiration":"2018-12-28 08:00:00 GMT","contractSize":10.0}
+
+
 class Instrument(models.Model):
+    contractSize = models.CharField(max_length=10,null=True)
     kind = models.CharField(max_length=10,null=True)
     currency = models.CharField(max_length=10,null=True)
     pricePrecision = models.IntegerField(null=True)
