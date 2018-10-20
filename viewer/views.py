@@ -29,14 +29,13 @@ class TableInstrumentView(View):
 class TableTradeView(View):
     def get(self, request, *args, **kwargs):
 
-        # Getting queryset
         queryset = None
         instrumentName = None
-        instrument_id = request.GET.get('instrument')
-        if instrument_id:
+        try:
+            instrument_id = request.GET.get('instrument')
             queryset = Trade.objects.filter(instrument__id=instrument_id)
             instrumentName = Instrument.objects.get(id=instrument_id).instrumentName
-        else:
+        except Exception as e:
             queryset = Trade.objects.all()
             instrumentName = 'All'
 
