@@ -46,7 +46,6 @@ class Command(BaseCommand):
             # Get Last trades
             for instrument in Instrument.objects.all():
 
-                # Get Last Trades
                 trade_model_list = []
                 trade_list = client.getlasttrades(instrument.instrumentName)
                 for trade in trade_list:
