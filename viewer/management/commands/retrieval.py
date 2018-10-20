@@ -26,16 +26,20 @@ class Command(BaseCommand):
         # Get instruments
         instrument_list = client.getinstruments()
 
-        # Create instruments
-        # TODO: Make use of bulk_create here
-        for instrument in instrument_list:
-            try:
-                instruments_model = Instrument(**instrument)
-                instruments_model.save()
 
-            except Exception as e:
-                # TODO: Integrate logger here
-                print("Error while saving model")
-                logger.error(e)
+        try:
+            logger.info("Deleting all Instrument objects")
+            Instrument.objects.all().delete()
+            instrument_model_list = []
+            for instrument in instrument_list:
+                instrument_model = Instrument(**instrument)
+                instrument_model_list.append(instrument_model)
+
+
+
+            Instrument.objects.bulk_create(instrument_model_list)
+            logger.info("Inserted " + str(len(instrument_model_list)) + " Instrument objects")
+        except Exception as e:
+            logger.error(e)
 
         logger.info('-- Ending process --')

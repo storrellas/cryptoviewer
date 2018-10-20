@@ -23,6 +23,7 @@ class Instrument(models.Model):
     # TODO: Find a way to import DateTimeField as it comes from Deribit
     #created = models.DateTimeField(null=True)
     created = models.CharField(max_length=20,null=True)
+    contractSize = models.DecimalField(max_digits=10, decimal_places=5,null=True)
 
 
 # {'instrument': 'BTC-28JUN19-20000-C', 'tradeId': 10135458, 'indexPrice': 6402.21,
