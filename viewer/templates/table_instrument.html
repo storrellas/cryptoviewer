@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% url 'trade' as trade %}
+
 {% block content %}
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
@@ -66,7 +68,7 @@
                       <td>{{instrument.instrumentName}}</td>
                       <td>{{instrument.created}}</td>
                       <td>{{instrument.expiration}}</td>
-                      <td><a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Last Trades</a></td>
+                      <td><a href="{{trade}}?instrument={{instrument.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Last Trades</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>

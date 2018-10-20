@@ -44,7 +44,20 @@ class TableInstrumentView(View):
         return render(request, 'table_instrument.html', context)
 
 class TableTradeView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
+        print("-- Trade --")
+        print(args)
+        print(kwargs)
+
+        queryset = None
+        instrumentName = None
+        instrument_id = request.GET.get('instrument')
+        if instrument_id:
+            queryset = Trade.objects.filter(instrument__id=instrument_id)
+            instrumentName = Instrument.objects.get(id=instrument_id).instrumentName
+        else:
+            queryset = Trade.objects.all()
+            instrumentName = 'All'
 
         """
         # Generate Deribit client
@@ -76,5 +89,5 @@ class TableTradeView(View):
                 print("Error while saving model")
                 print(e)
         """
-        context = {'trade_list': Trade.objects.all()}
+        context =  {'trade_list': queryset, 'instrumentName': instrumentName}
         return render(request, 'table_trade.html', context)
