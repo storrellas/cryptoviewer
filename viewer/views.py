@@ -41,7 +41,7 @@ class TableInstrumentView(View):
         #call_command('retrieval')
 
         context = {'instrument_list': Instrument.objects.all()}
-        return render(request, 'table_instrument_v2.html', context)
+        return render(request, 'table_instrument.html', context)
 
 class TableTradeView(View):
     def get(self, request):
@@ -77,4 +77,4 @@ class TableTradeView(View):
                 print(e)
         """
         context = {'trade_list': Trade.objects.all()}
-        return render(request, 'table_trade_v2.html', context)
+        return render(request, 'table_trade.html', context)
