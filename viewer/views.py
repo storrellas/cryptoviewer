@@ -20,6 +20,7 @@ class IndexView(TemplateView):
 class TableInstrumentView(View):
     def get(self, request):
 
+        """
         # Generate Deribit client
         client = RestClient(settings.DERIBIT_KEY, settings.DERIBIT_SECRET)
         # Get instruments
@@ -35,7 +36,7 @@ class TableInstrumentView(View):
             except Exception as e:
                 # TODO: Integrate logger here
                 print("Error while saving model")
-
+        """
 
 
         context = {'instrument_list': Instrument.objects.all()}
@@ -44,6 +45,7 @@ class TableInstrumentView(View):
 class TableTradeView(View):
     def get(self, request):
 
+        """
         # Generate Deribit client
         client = RestClient(settings.DERIBIT_KEY, settings.DERIBIT_SECRET)
 
@@ -72,6 +74,6 @@ class TableTradeView(View):
                 # TODO: Integrate logger here
                 print("Error while saving model")
                 print(e)
-
+        """
         context = {'trade_list': Trade.objects.all()}
         return render(request, 'table_trade.html', context)
