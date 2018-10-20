@@ -97,12 +97,12 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item {% if instrument in request.path %}active{% endif %}">
-          <a class="nav-link" href="/viewer/instrument/">
+          <a class="nav-link" href="{{instrument}}">
             <i class="fas fa-fw fa-table"></i>
             <span>Instruments</span></a>
         </li>
         <li class="nav-item {% if trade in request.path %}active{% endif %}">
-          <a class="nav-link" href="/viewer/trade/">
+          <a class="nav-link" href="{{trade}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Last Trades</span></a>
         </li>
