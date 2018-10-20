@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Tables</li>
+          </ol>
+
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Data Table Example</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Kind</th>
+                      <th>Currency</th>
+                      <th>PricePrecision</th>
+                      <th>Strike</th>
+                      <th>OptionType</th>
+                      <th>minTradeSize</th>
+                      <th>settlement</th>
+                      <th>baseCurrency</th>
+                      <th>tickSize</th>
+                      <th>InstrumentName</th>
+                      <th>Created</th>
+                      <th>Expiration</th>
+                      <th>See Last Trades</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Kind</th>
+                      <th>Currency</th>
+                      <th>PricePrecision</th>
+                      <th>Strike</th>
+                      <th>OptionType</th>
+                      <th>minTradeSize</th>
+                      <th>settlement</th>
+                      <th>baseCurrency</th>
+                      <th>tickSize</th>
+                      <th>InstrumentName</th>
+                      <th>Created</th>
+                      <th>Expiration</th>
+                      <th>See Last Trades</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for instrument in instrument_list %}
+                    <tr>
+                      <td>{{instrument.kind}}</td>
+                      <td>{{instrument.currency}}</td>
+                      <td>{{instrument.pricePrecision}}</td>
+                      <td>{{instrument.strike}}</td>
+                      <td>{{instrument.optionType}}</td>
+                      <td>{{instrument.minTradeSize}}</td>
+                      <td>{{instrument.settlement}}</td>
+                      <td>{{instrument.baseCurrency}}</td>
+                      <td>{{instrument.tickSize}}</td>
+                      <td>{{instrument.instrumentName}}</td>
+                      <td>{{instrument.created}}</td>
+                      <td>{{instrument.expiration}}</td>
+                      <td><a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Last Trades</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+          <p class="small text-center text-muted my-5">
+            <em>More table examples coming soon...</em>
+          </p>
+{% endblock %}

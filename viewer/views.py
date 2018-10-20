@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django.conf import settings
+from django.core.management import call_command
 
 # Library Imports
 from deribit_api import RestClient
@@ -37,10 +38,10 @@ class TableInstrumentView(View):
                 # TODO: Integrate logger here
                 print("Error while saving model")
         """
-
+        #call_command('retrieval')
 
         context = {'instrument_list': Instrument.objects.all()}
-        return render(request, 'table_instrument.html', context)
+        return render(request, 'table_instrument_v2.html', context)
 
 class TableTradeView(View):
     def get(self, request):
@@ -76,4 +77,4 @@ class TableTradeView(View):
                 print(e)
         """
         context = {'trade_list': Trade.objects.all()}
-        return render(request, 'table_trade.html', context)
+        return render(request, 'table_trade_v2.html', context)
