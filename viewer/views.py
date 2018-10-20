@@ -21,23 +21,6 @@ class IndexView(TemplateView):
 class TableInstrumentView(View):
     def get(self, request):
 
-        """
-        # Generate Deribit client
-        client = RestClient(settings.DERIBIT_KEY, settings.DERIBIT_SECRET)
-        # Get instruments
-        instrument_list = client.getinstruments()
-
-        # Create instruments
-        # TODO: Make use of bulk_create here
-        for instrument in instrument_list:
-            try:
-                instruments_model = Instrument(**instrument)
-                instruments_model.save()
-
-            except Exception as e:
-                # TODO: Integrate logger here
-                print("Error while saving model")
-        """
         #call_command('retrieval')
 
         context = {'instrument_list': Instrument.objects.all()}
@@ -45,10 +28,8 @@ class TableInstrumentView(View):
 
 class TableTradeView(View):
     def get(self, request, *args, **kwargs):
-        print("-- Trade --")
-        print(args)
-        print(kwargs)
 
+        # Getting queryset
         queryset = None
         instrumentName = None
         instrument_id = request.GET.get('instrument')
@@ -59,35 +40,6 @@ class TableTradeView(View):
             queryset = Trade.objects.all()
             instrumentName = 'All'
 
-        """
-        # Generate Deribit client
-        client = RestClient(settings.DERIBIT_KEY, settings.DERIBIT_SECRET)
 
-        print("Getting this thing")
-        print(Instrument.objects.first().instrumentName)
-
-        # Get instruments
-        instruments = client.getinstruments()
-        trade_list = client.getlasttrades(instruments[1]['instrumentName'])
-
-        instruments_model = Instrument(**instruments[1])
-        instruments_model.save()
-
-        #trade_list = client.getlasttrades(Instrument.objects.get(id=827).instrumentName)
-
-        print(trade_list)
-
-        # Create instruments
-        # TODO: Make use of bulk_create here
-        for trade in trade_list:
-            try:
-                trade_model = Trade(**trade)
-                trade_model.instrument = instrument_model
-                trade_model.save()
-            except Exception as e:
-                # TODO: Integrate logger here
-                print("Error while saving model")
-                print(e)
-        """
         context =  {'trade_list': queryset, 'instrumentName': instrumentName}
         return render(request, 'table_trade.html', context)
