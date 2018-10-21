@@ -16,36 +16,40 @@ from viewer.models import Instrument, Trade
 
 
 class Command(BaseCommand):
-    help = 'Generate invoice for a given portfolio'
+    help = 'Retrieve last trades from Deribit for a given instrument'
+
+    def add_arguments(self, parser):
+
+        # Named (optional) arguments
+        parser.add_argument(
+            '--instrument',
+            action='store',
+            dest='instrument',
+            help='Instrument Id for which retrieve last trades',
+        )
 
     def handle(self, *args, **options):
         logger = get_logger('sftp_client')
         logger.info('-- Starting process --')
 
+
+
+
         # Generate Deribit client
         client = RestClient(settings.DERIBIT_KEY, settings.DERIBIT_SECRET)
-        # Get instruments
-        instrument_list = client.getinstruments()
-
 
         try:
-            logger.info("Deleting all Instrument objects")
-            Instrument.objects.all().delete()
-            Trade.objects.all().delete()
-
-            # Iterate instruments
-            instrument_model_list = []
-            for instrument in instrument_list:
-                instrument_model = Instrument(**instrument)
-                instrument_model_list.append(instrument_model)
-            if len(instrument_model_list) > 0:
-                Instrument.objects.bulk_create(instrument_model_list)
-            logger.info("Inserted " + str(len(instrument_model_list)) + " Instrument objects")
+            if options['instrument']:
+                logger.info('Getting last trades for instrument id: ' + str(options['instrument']))
+                instrument = Instrument.objects.get(id=options['instrument'])
+            else:
+                raise Exception("no instrument provided")
 
 
-            # Get Last trades
-            for instrument in Instrument.objects.all():
-
+            if Trade.objects.filter(instrument=instrument).count()>0:
+                logger.info("Last trades already retrieved")
+            else:
+                # Getting last trades
                 trade_model_list = []
                 trade_list = client.getlasttrades(instrument.instrumentName)
                 for trade in trade_list:
@@ -59,7 +63,6 @@ class Command(BaseCommand):
                 logger.info("Inserted " + str(len(trade_model_list)) +
                                 " Trade objects for InstrumentName " + instrument.instrumentName)
 
-            logger.info("Inserted " + str(Trade.objects.all().count()) + " Trades" )
         except Exception as e:
             traceback.print_exc()
             logger.error(e)

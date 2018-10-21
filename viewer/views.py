@@ -21,8 +21,10 @@ class IndexView(TemplateView):
 class TableInstrumentView(View):
     def get(self, request):
 
-        #call_command('retrieval')
+        # Call command to retrieve instruments
+        call_command('retrieval_instruments')
 
+        # Generate context
         context = {'instrument_list': Instrument.objects.all()}
         return render(request, 'table_instrument.html', context)
 
@@ -35,6 +37,10 @@ class TableTradeView(View):
             instrument_id = request.GET.get('instrument')
             queryset = Trade.objects.filter(instrument__id=instrument_id)
             instrumentName = Instrument.objects.get(id=instrument_id).instrumentName
+
+            # Call command to retrieve instruments
+            call_command('retrieval_trades', instrument=instrument_id)
+
         except Exception as e:
             queryset = Trade.objects.all()
             instrumentName = 'All'
