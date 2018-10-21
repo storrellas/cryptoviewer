@@ -1,11 +1,9 @@
+import sys,os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../lib/')
 
 
-
-
-from lib.deribit_api_cryptoviewer import RestClient
+from deribit_api_cryptoviewer import RestClient
 from localsettings import *
-
-
 
 client = RestClient(DERIBIT_KEY, DERIBIT_SECRET)
 client.index()
