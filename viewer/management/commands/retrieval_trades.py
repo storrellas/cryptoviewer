@@ -2,18 +2,18 @@
 import os
 import time
 import traceback
-from deribit_api import RestClient
+import sys
 
 # Django imports
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
+sys.path.append(settings.BASE_DIR + '/lib/')
+
 # Project imports
 from cryptoviewer.utils import get_logger
-
-# Project imports
 from viewer.models import Instrument, Trade
-
+from deribit_api_cryptoviewer import RestClient
 
 class Command(BaseCommand):
     help = 'Retrieve last trades from Deribit for a given instrument'

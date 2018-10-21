@@ -2,17 +2,18 @@
 import os
 import time
 import traceback
-from deribit_api import RestClient
+import sys
 
 # Django imports
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-# Project imports
-from cryptoviewer.utils import get_logger
+sys.path.append(settings.BASE_DIR + '/lib/')
 
 # Project imports
+from cryptoviewer.utils import get_logger
 from viewer.models import Instrument, Trade
+from deribit_api_cryptoviewer import RestClient
 
 
 class Command(BaseCommand):
@@ -21,6 +22,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         logger = get_logger('sftp_client')
         logger.info('-- Starting process --')
+
+        print(settings.BASE_DIR)
 
         try:
             # Generate Deribit client
