@@ -1,5 +1,10 @@
-from deribit_api import RestClient
+
+
+
+
+from lib.deribit_api_cryptoviewer import RestClient
 from localsettings import *
+
 
 
 client = RestClient(DERIBIT_KEY, DERIBIT_SECRET)
@@ -9,9 +14,10 @@ client.account()
 # Get instruments
 instruments = client.getinstruments()
 
-print(instruments[1])
+#print(instruments[1])
+print(instruments)
 
 # Get Last trades
-lastrades = client.getlasttrades(instruments[1]['instrumentName'])
+#lastrades = client.getlasttrades(instruments[1]['instrumentName'])
 
-print(lastrades[0])
+#print(lastrades[0])
