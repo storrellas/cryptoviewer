@@ -123,6 +123,12 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+     os.path.join(PROJECT_ROOT, 'static'),
+     os.path.join(BASE_DIR, 'assets')
+)
+
 # DERIBIT CREDENTIALS
 DERIBIT_KEY = '4omiTN8nVPSyp'
 DERIBIT_SECRET = 'ZWF6TYENRB7N2BVDEZIUYW7ACNMWXE5A'
