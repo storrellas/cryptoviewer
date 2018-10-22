@@ -55,13 +55,15 @@ heroku run bash
 5. Create environment
 heroku config:set DERIBIT_KEY='joesmith'
 
-
 [...]
 DERIBIT_KEY = os.environ.get('DERIBIT_KEY', None)
 [...]
 
 6. See Logs
 sudo heroku logs -t --app=cryptoviewer-release
+
+7. SSH into dyno
+heroku run bash --app=cryptoviewer-release
 
 # Heroku Tutorial
 
@@ -80,3 +82,6 @@ sudo heroku container:release web --app=cryptoviewer-docker
 
 5. See Logs
 sudo heroku logs -t --app=cryptoviewer-docker
+
+6. SSH into dyno
+heroku run bash --app=cryptoviewer-release
