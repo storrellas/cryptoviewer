@@ -62,10 +62,13 @@ DERIBIT_KEY = os.environ.get('DERIBIT_KEY', None)
 6. See Logs
 sudo heroku logs -t --app=cryptoviewer-release
 
-7. SSH into dyno
+7. SSH into dyno (does not include config vars)
+heroku ps:exec --app=cryptoviewer-release
+
+8. Generate one-off dyno (includes config vars)
 heroku run bash --app=cryptoviewer-release
 
-# Heroku Tutorial
+# Heroku Docker
 
 1. Login container
 heroku container:login
@@ -79,9 +82,3 @@ sudo docker push registry.heroku.com/cryptoviewer-docker/web
 
 4. Release
 sudo heroku container:release web --app=cryptoviewer-docker
-
-5. See Logs
-sudo heroku logs -t --app=cryptoviewer-docker
-
-6. SSH into dyno
-heroku run bash --app=cryptoviewer-release
