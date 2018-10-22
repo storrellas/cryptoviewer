@@ -124,8 +124,8 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # DERIBIT CREDENTIALS
-DERIBIT_KEY = ''
-DERIBIT_SECRET = ''
+DERIBIT_KEY = '4omiTN8nVPSyp'
+DERIBIT_SECRET = 'ZWF6TYENRB7N2BVDEZIUYW7ACNMWXE5A'
 
 # Import localsettings if any
 try:
