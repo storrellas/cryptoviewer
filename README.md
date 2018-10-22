@@ -29,7 +29,7 @@ http://localhost:8000/views/instrument/
 
 2. URL paths are place under viewer\urls.py
 
-3. Commands are placed under 
+3. Commands are placed under
 
 viewer\management\commands\retrieval_instruments.py
 
@@ -59,3 +59,24 @@ heroku config:set DERIBIT_KEY='joesmith'
 [...]
 DERIBIT_KEY = os.environ.get('DERIBIT_KEY', None)
 [...]
+
+6. See Logs
+sudo heroku logs -t --app=cryptoviewer-release
+
+# Heroku Tutorial
+
+1. Login container
+heroku container:login
+
+2. Create app
+heroku create --app=cryptoviewer-docker
+
+3. Push image
+sudo docker tag cryptoviewer registry.heroku.com/cryptoviewer-docker/web
+sudo docker push registry.heroku.com/cryptoviewer-docker/web
+
+4. Release
+sudo heroku container:release web --app=cryptoviewer-docker
+
+5. See Logs
+sudo heroku logs -t --app=cryptoviewer-docker

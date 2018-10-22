@@ -14,6 +14,6 @@ RUN python3 manage.py migrate
 EXPOSE 8000
 
 # Run container
-CMD python3 /repo/manage.py runserver 0.0.0.0:$PORT
-
+#CMD python3 /repo/manage.py runserver 0.0.0.0:$PORT
+CMD gunicorn cryptoviewer.wsgi --bind 0.0.0.0:$PORT
 #sudo docker run -t -p8080:8080 -e"PORT=8080" cryptoviewer
