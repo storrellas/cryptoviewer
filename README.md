@@ -32,4 +32,5 @@ http://localhost:8000/views/instrument/
 3. Commands are placed under 
 
 viewer\management\commands\retrieval_instruments.py
+
 viewer\management\commands\retrieval_trades.py
