@@ -4,7 +4,7 @@ FROM alpine:latest
 MAINTAINER Sergi Torrellas
 
 # Add folder
-RUN apk add --no-cache --update python3 bash mosquitto
+RUN apk add --no-cache --update python3 bash postgresql-dev build-base python3-dev 
 ADD . /repo/
 WORKDIR /repo/
 RUN pip3 install -r requirements.txt
@@ -15,4 +15,6 @@ EXPOSE 8000
 
 # Run container
 CMD python3 /repo/manage.py runserver 0.0.0.0:$PORT
+
+#CMD python3 /repo/manage.py runserver 0.0.0.0:80
 #sudo docker run -t -p8000:8000 cryptoviewer
