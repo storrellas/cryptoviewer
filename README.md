@@ -34,3 +34,28 @@ http://localhost:8000/views/instrument/
 viewer\management\commands\retrieval_instruments.py
 
 viewer\management\commands\retrieval_trades.py
+
+## Heroku
+
+1. Create heroku app
+heroku apps:create cryptoviewer-release
+
+2. Append addon
+heroku addons:create heroku-postgresql
+
+3. Insert config variables
+heroku config
+
+4. Run bash into dyno
+heroku run bash
+
+./manage.py makemigrations viewer
+./manage.py migrate viewer
+
+5. Create environment
+heroku config:set DERIBIT_KEY='joesmith'
+
+
+[...]
+DERIBIT_KEY = os.environ.get('DERIBIT_KEY', None)
+[...]
