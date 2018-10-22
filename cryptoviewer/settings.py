@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,7 +84,8 @@ WSGI_APPLICATION = 'cryptoviewer.wsgi.application'
 # }
 import dj_database_url
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(default='postgres://iwhdhaahrarrpx:cd6b69b40ec87ad598271399d6dea0bb3904f8207c59c38d455a1757f97508bc@ec2-54-243-147-162.compute-1.amazonaws.com:5432/dfcf4ac70kv6tf')
+#DATABASES['default'] = dj_database_url.config(default='postgres://iwhdhaahrarrpx:cd6b69b40ec87ad598271399d6dea0bb3904f8207c59c38d455a1757f97508bc@ec2-54-243-147-162.compute-1.amazonaws.com:5432/dfcf4ac70kv6tf')
+DATABASES['default'] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -140,5 +142,5 @@ try:
 except ImportError:
     pass
 
-# import django_heroku
-# django_heroku.settings(locals())
+
+django_heroku.settings(locals())
