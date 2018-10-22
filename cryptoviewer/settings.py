@@ -136,8 +136,6 @@ django_heroku.settings(locals())
 DERIBIT_KEY = os.environ.get('DERIBIT_KEY', None)
 DERIBIT_SECRET = os.environ.get('DERIBIT_SECRET', None)
 
-
-
 # Import localsettings if any
 try:
     from .localsettings import *
