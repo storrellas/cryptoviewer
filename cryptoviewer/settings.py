@@ -81,6 +81,7 @@ WSGI_APPLICATION = 'cryptoviewer.wsgi.application'
 #     }
 # }
 import dj_database_url
+DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
 
 # Password validation
