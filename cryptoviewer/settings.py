@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'cryptoviewer.wsgi.application'
 # }
 import dj_database_url
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default='postgres://iwhdhaahrarrpx:cd6b69b40ec87ad598271399d6dea0bb3904f8207c59c38d455a1757f97508bc@ec2-54-243-147-162.compute-1.amazonaws.com:5432/dfcf4ac70kv6tf')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
